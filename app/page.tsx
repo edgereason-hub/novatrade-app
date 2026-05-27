@@ -49,7 +49,7 @@ export default function NovaTrade() {
   const scrollToBottom = () => messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   useEffect(() => { scrollToBottom(); }, [messages]);
 
-  // Real-time price simulation
+  // Real-time price updates
   useEffect(() => {
     const interval = setInterval(() => {
       setPortfolio(prev => prev.map(item => {
@@ -123,6 +123,7 @@ export default function NovaTrade() {
 
   return (
     <div className="flex h-screen bg-[#0A0F1C] text-white overflow-hidden">
+      {/* Sidebar */}
       <div className="hidden md:flex w-72 border-r border-white/10 flex-col">
         <div className="p-6 border-b border-white/10">
           <h1 className="text-3xl font-bold text-[#00D4FF]">NovaTrade</h1>
@@ -141,8 +142,9 @@ export default function NovaTrade() {
         </div>
       </div>
 
+      {/* Mobile Hamburger */}
       <div className="md:hidden fixed top-4 left-4 z-50">
-        <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="text-3xl p-2">☰</button>
+        <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="text-3xl p-2 bg-white/10 rounded-xl">☰</button>
       </div>
 
       <div className="flex-1 flex flex-col">
@@ -152,6 +154,7 @@ export default function NovaTrade() {
         </header>
 
         <div className="flex-1 overflow-auto p-8">
+          {/* Chat */}
           {activeTab === 'chat' && (
             <div className="max-w-3xl mx-auto h-full flex flex-col">
               <div className="flex-1 overflow-auto space-y-6 pb-8" ref={messagesEndRef}>
@@ -176,6 +179,7 @@ export default function NovaTrade() {
             </div>
           )}
 
+          {/* Other tabs */}
           {activeTab === 'insights' && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="bg-[#1A2338] p-8 rounded-3xl">
